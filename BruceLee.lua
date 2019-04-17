@@ -10,7 +10,6 @@ BruceLee_SpellNames = {
 
 function BruceLee_OnEvent()
   if(UnitExists("target")) then
-    DEFAULT_CHAT_FRAME:AddMessage(arg1);
     if(strfind(arg1, UnitName("target"))) then
       if(strfind(arg1, "begins to cast")) then
         BruceLee_StartCast = GetTime();
