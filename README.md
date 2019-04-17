@@ -16,3 +16,4 @@ Mage:
 /run if(BruceLee_Kick()) then SpellStopCasting() CastSpellByName("Counterspell") SendChatMessage(UnitName("player") .. " interrupted.", "SAY"); end
 ```
 
+https://www.youtube.com/watch?v=EZATcStzaBM
