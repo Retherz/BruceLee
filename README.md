@@ -1,5 +1,5 @@
 # BruceLee
-Kick shit
+Kick shit - supports Pummel, Kick and Counterspell
 
 
 ```
@@ -9,3 +9,10 @@ Kick shit
 ```
 /run if(BruceLee_Kick()) then SendChatMessage(UnitName("player") .. " interrupted.", "SAY"); end
 ```
+
+Mage:
+
+```
+/run if(BruceLee_Kick()) then SpellStopCasting() CastSpellByName("Counterspell") SendChatMessage(UnitName("player") .. " interrupted.", "SAY"); end
+```
+
