@@ -62,7 +62,7 @@ function BruceLee_GetCooldown()
 end
 
 function BruceLee_Kick()
-  if(BruceLee_SpellID ~= 0 and BruceLee_GetCooldown() == 0 and GetTime() - BruceLee_StartCast < 3) then
+  if(BruceLee_SpellID ~= 0 and BruceLee_GetCooldown() == 0 and GetTime() - BruceLee_StartCast < 1.5) then
     CastSpellByName(BruceLee_Name);
     BruceLee_StartCast = 0;
     return true;
