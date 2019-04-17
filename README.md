@@ -3,7 +3,7 @@ Kick shit - supports Pummel, Kick and Counterspell
 
 
 ```
-/run if(BruceLee_Kick()) then SendChatMessage(UnitName("player") .. " interrupted - <Friend> are next.", "PARTY"); end
+/run if(BruceLee_Kick()) then SendChatMessage(UnitName("player") .. " interrupted - <Friend> is next.", "PARTY"); end
 ```
 
 ```
