@@ -1,6 +1,6 @@
 ## Interface: 11200
 ## Title: BruceLee
-## Version: 1
+## Version: 1.1
 ## Notes: does the kick thing really good.
 ## DefaultState: enabled
 ## Author: Retherz

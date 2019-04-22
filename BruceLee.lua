@@ -1,6 +1,9 @@
 BruceLee_SpellID = 0;
 BruceLee_Name = "";
 BruceLee_StartCast = 0;
+BruceLee_LastCast = 0;
+
+BruceLee_Com_LastInterrupt = 0;
 
 BruceLee_SpellNames = {
   ["ROGUE"] = "Kick",
@@ -9,6 +12,12 @@ BruceLee_SpellNames = {
 }
 
 function BruceLee_OnEvent()
+if(event == "CHAT_MSG_ADDON") then
+  if(arg1 == "BruceLee" and arg2 == BruceLee_Target()) then
+    BruceLee_Com_LastInterrupt = math.floor(GetTime() * 100) / 100;
+  end
+  return;
+end
   if(UnitExists("target")) then
     if(strfind(arg1, UnitName("target"))) then
       if(strfind(arg1, "begins to cast")) then
@@ -24,6 +33,7 @@ function BruceLee_OnLoad()
     BruceLee_SetSpellIDs();
     BruceLee_AddOnFrame:SetScript("OnUpdate", nil);
     BruceLee_AddOnFrame:SetScript("OnEvent", BruceLee_OnEvent);
+    BruceLee_AddOnFrame:RegisterEvent("CHAT_MSG_ADDON");
     BruceLee_AddOnFrame:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_DAMAGE");
     BruceLee_AddOnFrame:RegisterEvent("CHAT_MSG_SPELL_CREATURE_VS_CREATURE_BUFF");
   end
@@ -61,9 +71,26 @@ function BruceLee_GetCooldown()
 end
 
 function BruceLee_Kick()
-  if(BruceLee_SpellID ~= 0 and BruceLee_GetCooldown() == 0 and GetTime() - BruceLee_StartCast < 1.5) then
+  local t = math.floor(GetTime() * 100) / 100;
+  if(UnitExists("target") and BruceLee_SpellID ~= 0 and BruceLee_GetCooldown() == 0 and GetTime() - BruceLee_StartCast < 1.4 and t ~= BruceLee_LastCast and t ~= BruceLee_Com_LastInterrupt) then
+    BruceLee_LastCast = t;
+    BruceLee_CommunicateKick();
     CastSpellByName(BruceLee_Name);
     return true;
   end
   return false;
+end
+
+function BruceLee_CommunicateKick()
+  if(GetNumRaidMembers() == 0) then
+    SendAddonMessage("BruceLee", BruceLee_Target(), "PARTY");
+  else
+    SendAddonMessage("BruceLee", BruceLee_Target(), "RAID");
+  end
+end
+
+function BruceLee_Target()
+  local c = GetRaidTargetIndex(target);
+  c = c ~= nil and c or 0;
+  return UnitName("target") .. c;
 end
