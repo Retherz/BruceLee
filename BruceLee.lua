@@ -90,7 +90,7 @@ function BruceLee_CommunicateKick()
 end
 
 function BruceLee_Target()
-  local c = GetRaidTargetIndex(target);
+  local c = GetRaidTargetIndex("target");
   c = c ~= nil and c or 0;
   return UnitName("target") .. c;
 end
