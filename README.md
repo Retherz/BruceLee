@@ -1,5 +1,5 @@
-# BruceLee 1.1
-Kick shit - supports Pummel, Kick and Counterspell
+# BruceLee 1.2
+Kick shit - supports Pummel, Kick, Counterspell and Shield Bash (New)
 
 Allows you to only use your interrupt if your target has started casting less than 1.5 seconds ago. The addon communicates with other users of the addon based on raid symbols and target name to reduce multiple uses of interrupts on the same target and the same cast.
 
